@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
-
+import 'package:w3/ui/custom_widgets/custom_widgets.dart';
+import 'package:w3/core/constants/text_style.dart';
+import 'package:w3/core/constants/buttons_style.dart';
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -12,9 +14,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //final _formKey = GlobalKey<FormState>();
   bool? value = false;
+  double height=0;
+  double width=0;
 
   @override
   Widget build(BuildContext context) {
+    height =MediaQuery.of(context).size.height;
+    width =MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -23,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
+                  //top big picture
                   ClipPath(
                     child: Image(
                       height: 220.0.h,
@@ -31,8 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         'assets/images/green-plants-loginscreen.jpg',
                       ),
                     ),
-                    clipper: _LoginScreenClipper(),
+                    clipper: LoginScreenClipper(),
                   ),
+
+                  //top back arrow icon Button
                   Positioned(
                     top: 20.h,
                     left: 20.h,
@@ -51,8 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
+                  //small leaves picture
                   Positioned(
-                    top: 250.h,
+                    top: height <690 ?220.h: 260.h,
                     bottom: null,
                     right: -6.h,
                     child: RotationTransition(
@@ -63,55 +73,60 @@ class _LoginScreenState extends State<LoginScreen> {
                           image: const AssetImage('assets/images/leaf.png')),
                     ),
                   ),
-                  //
+
+                  //Welcome text + login to your account text
                   Positioned.fill(
-                    top: 260.h,
+                    top: height <690 ?220.h: 260.h,
                     bottom: null,
                     child: Column(
                       children: [
                         Text(
                           'Welcome back',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 30.0.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
+                          style:kH1TextStyleLogInScreen,),
                         SizedBox(
                           height: 5.0.h,
                         ),
                         Text(
                           'Login to your account',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14.0.sp,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w300),
+                          style: kH2TextStyleLogInScreen,
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
+
+
+              //text fields, forgot password, LogIn Button, SignUp Detector
               Padding(
-                padding: EdgeInsets.fromLTRB(20.0.w, 120.0.h, 20.0.w, 10.0.h),
+                padding: EdgeInsets.fromLTRB(20.0.w, height < 690 ?80 : 120.0.h, 20.0.w, 10.0.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+
+                    //full name text field
                     const CustomTextField(
                       iconData: Icons.person,
                       hintText: 'Full Name',
                       obscureText: false,
                       textInputType: TextInputType.name,
                     ),
+
+                    //
                     SizedBox(
                       height: 15.0.h,
                     ),
+
+                    //Password text field
                     const CustomTextField(
                       iconData: Icons.lock,
                       hintText: '******',
                       obscureText: true,
                       textInputType: TextInputType.visiblePassword,
                     ),
+
+
+                    //checkbox & forgot Password detector
                     Row(
                       children: [
                         Transform.scale(
@@ -132,9 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             shape: const CircleBorder(),
                           ),
                         ),
-                        const Text(
+                         Text(
                           'Remember me',
-                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                          style: k4TextStyleLogInScreen,
                         ),
                         const Spacer(),
                         GestureDetector(
@@ -149,58 +164,50 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
+
+
+                    //
                     SizedBox(
-                      height: 80.0.h,
+                     // height: 80.0.h,
+                      height: height <690 ?30.h: 80.h,
                     ),
+
+                    // Login Button
                     ElevatedButton(
                       onPressed: () {},
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 10.0.h,
                         ),
-                        child: const Text(
+                        child: Text(
                           'Login',
-                          style: TextStyle(fontFamily: "Poppins"),
+                          style: kLongInButtonTextStyle,
                         ),
                       ),
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0.h),
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(kDarkGreen),
-                      ),
+                      style: kLogInScreenElevatedButtonStyle,
                     ),
+
+                    //
                     SizedBox(
                       height: 10.0.h,
                     ),
+
+                    //row of last text and SignUp
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
                         Text(
                           'Don\'t have an account? ',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15.sp,
-                          ),
+                          style: kH2TextStyleLogInScreen,
                         ),
+
+                        //Sign Up detector
                         GestureDetector(
                           onTap: () {},
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: kDarkGreen, width: 1.5.w)),
-                            ),
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          child: Text(
+                            'Sign Up',
+                            style: kH3TextStyleSignUpTextInLogInScreen,
                           ),
                         )
                       ],
@@ -216,66 +223,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class _LoginScreenClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0, size.height.h - 55.h);
 
-    path.quadraticBezierTo(
-      size.width / 3,
-      size.height.h - 10.h,
-      size.width,
-      size.height.h - 100.h,
-    );
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {Key? key,
-      required this.iconData,
-      this.textInputType,
-      this.obscureText,
-      required this.hintText,
-      this.inputBorder})
-      : super(key: key);
-  final String hintText;
-  final bool? obscureText;
-  final TextInputType? textInputType;
-  final InputBorder? inputBorder;
-  final IconData iconData;
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      keyboardType: textInputType ?? TextInputType.text,
-      obscureText: obscureText ?? false,
-      decoration: InputDecoration(
-        prefixIcon: Icon(iconData, color: kDarkGreen),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kDarkGreen, width: 1.w),
-        ),
-        filled: true,
-        fillColor: kTextFieldFilledColor,
-        contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-        hintText: hintText,
-        hintStyle: TextStyle(
-            fontFamily: "Poppins",
-            fontSize: 14.sp,
-            color: kDarkGreen,
-            fontWeight: FontWeight.w500),
-        border: inputBorder ??
-            OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10),
-            ),
-      ),
-    );
-  }
-}
