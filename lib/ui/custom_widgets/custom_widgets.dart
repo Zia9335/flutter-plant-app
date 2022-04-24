@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/core/constants/colors_constants.dart';
+import 'package:w3/core/constants/buttons_style.dart';
+
+
+
+
+
 //This the Clipper of logIn screen top big image
 class LoginScreenClipper extends CustomClipper<Path> {
   @override
@@ -24,6 +31,10 @@ class LoginScreenClipper extends CustomClipper<Path> {
 }
 
 
+
+
+
+//Custom Text Field
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {Key? key,
@@ -52,17 +63,76 @@ class CustomTextField extends StatelessWidget {
         fillColor: kTextFieldFilledColor,
         contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
         hintText: hintText,
-        hintStyle: TextStyle(
-            fontFamily: "Poppins",
-            fontSize: 14.sp,
-            color: kDarkGreen,
-            fontWeight: FontWeight.w500),
+        hintStyle: kTextFieldHintsTextStyle,
         border: inputBorder ??
             OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(10.r),
             ),
       ),
+    );
+  }
+}
+
+
+
+
+
+
+/* SignUp Screen Text "By signing you agree to our Team
+of use and privacy notice"
+ */
+class RichTextAgreeWithTeamText extends StatelessWidget {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+
+          children: [
+            TextSpan(text: 'By signing you agree to our ',
+              style: kTextFieldHintsTextStyle.copyWith(fontWeight: FontWeight.bold, ),),
+            TextSpan(text: 'Team of use ',
+                style: kTextFieldHintsTextStyle.copyWith(color: kGrey,)),
+            TextSpan(text: '\nand ',
+              style: kTextFieldHintsTextStyle.copyWith(fontWeight: FontWeight.bold),),
+            TextSpan(text: 'privacy notice ',
+                style: kTextFieldHintsTextStyle.copyWith(color: kGrey,)),
+          ]
+      ),);
+  }
+}
+
+
+
+
+//Custom Elevated Button
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton({
+    Key? key, required this.function, required this.buttonText
+  }) : super(key: key);
+  final VoidCallback function;
+  final String buttonText;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: function,
+
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 10.0.h,
+        ),
+        child: Text(
+          buttonText,
+          style: kLongInButtonTextStyle,
+        ),
+      ),
+      style: kLogInScreenElevatedButtonStyle,
     );
   }
 }

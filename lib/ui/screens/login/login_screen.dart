@@ -4,6 +4,7 @@ import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/core/constants/buttons_style.dart';
+import 'package:w3/ui/screens/signup/signup_screen.dart';
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -82,13 +83,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(
                           'Welcome back',
-                          style:kH1TextStyleLogInScreen,),
+                          style:kH1TextStyle,),
                         SizedBox(
                           height: 5.0.h,
                         ),
                         Text(
                           'Login to your account',
-                          style: kH2TextStyleLogInScreen,
+                          style: kH2TextStyle,
                         ),
                       ],
                     ),
@@ -173,19 +174,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
 
                     // Login Button
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 10.0.h,
-                        ),
-                        child: Text(
-                          'Login',
-                          style: kLongInButtonTextStyle,
-                        ),
+                    CustomElevatedButton(function:(){},
+                        buttonText: 'Login',
                       ),
-                      style: kLogInScreenElevatedButtonStyle,
-                    ),
 
                     //
                     SizedBox(
@@ -199,12 +190,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         Text(
                           'Don\'t have an account? ',
-                          style: kH2TextStyleLogInScreen,
+                          style: kH2TextStyle,
                         ),
 
                         //Sign Up detector
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder:
+                                (context){return SignUpScreen();}));
+                          },
                           child: Text(
                             'Sign Up',
                             style: kH3TextStyleSignUpTextInLogInScreen,
@@ -222,6 +217,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
 
 
 

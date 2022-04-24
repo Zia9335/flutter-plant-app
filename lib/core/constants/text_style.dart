@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
-TextStyle kH1TextStyleLogInScreen=  TextStyle(
+TextStyle kH1TextStyle=  TextStyle(
     fontFamily: 'Poppins',
+    color: kDarkGreen,
     fontSize: 30.0.sp,
     fontWeight: FontWeight.bold);
 
-TextStyle kH2TextStyleLogInScreen=  TextStyle(
+TextStyle kH2TextStyle=  TextStyle(
   fontFamily: 'Poppins',
   fontSize: 14.0.sp,
   color: kGrey,
@@ -31,4 +32,11 @@ decoration: TextDecoration.underline,
 decorationThickness: 2.h,
 fontSize: 12.sp,
 fontWeight: FontWeight.bold,
+  color: kDarkGreen
 );
+
+TextStyle kTextFieldHintsTextStyle=TextStyle(
+    fontFamily: "Poppins",
+    fontSize: 14.sp,
+    color: kDarkGreen,
+    fontWeight: FontWeight.w500);
