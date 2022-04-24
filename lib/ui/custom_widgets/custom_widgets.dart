@@ -136,3 +136,68 @@ class CustomElevatedButton extends StatelessWidget {
     );
   }
 }
+
+
+
+// repeated Small Leaves Picture
+class SmallLeavesPicture extends StatelessWidget {
+  const SmallLeavesPicture({
+    Key? key,
+    required this.positionFromTop,
+  }) : super(key: key);
+
+  final double positionFromTop;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: positionFromTop,
+      bottom: null,
+      right: -6.h,
+      child: RotationTransition(
+        turns: const AlwaysStoppedAnimation(300 / 360),
+        child: Image(
+            width: 90.0.w,
+            height: 90.0.h,
+            image: const AssetImage('assets/images/leaf.png')),
+      ),
+    );
+  }
+}
+
+
+
+
+// repeated CircularBackButton
+class CircularBackButton extends StatelessWidget {
+  const CircularBackButton({
+    Key? key, required this.onTapFuction
+  }) : super(key: key);
+
+  final VoidCallback onTapFuction;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 20.h,
+      left: 20.h,
+      child: GestureDetector(
+        onTap: onTapFuction,
+        child: ClipOval(
+          child: Container(
+            height: 25.h,
+            width: 25.h,
+            alignment: Alignment.centerRight,
+            color: Colors.white,
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: kDarkGreen,
+              size: 20.sp,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+

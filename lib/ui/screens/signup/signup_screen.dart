@@ -20,38 +20,14 @@ class SignUpScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Stack(
               children: [
+
                 //top back arrow icon Button
-                Positioned(
-                  top: 20.h,
-                  left: 20.h,
-                  child: ClipOval(
-                    child: Container(
-                      height: 25.h,
-                      width: 25.h,
-                      alignment: Alignment.centerRight,
-                      color: Colors.white,
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: kDarkGreen,
-                        size: 20.sp,
-                      ),
-                    ),
-                  ),
-                ),
+                CircularBackButton(onTapFuction: (){Navigator.pop(context);},),
 
                 //small leaves picture
-                Positioned(
-                  top: height <690 ?20.h: 60.h,
-                  bottom: null,
-                  right: -6.h,
-                  child: RotationTransition(
-                    turns: const AlwaysStoppedAnimation(300 / 360),
-                    child: Image(
-                        width: 90.0.w,
-                        height: 90.0.h,
-                        image: const AssetImage('assets/images/leaf.png')),
-                  ),
-                ),
+                SmallLeavesPicture(positionFromTop: height <690 ?20.h: 60.h,),
+
+
                 Padding(
                   padding: EdgeInsets.only(top: 80.h, bottom: 10.h,left: 20.w,right: 20.w ),
                   child: Column(

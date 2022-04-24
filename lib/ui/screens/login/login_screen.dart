@@ -43,37 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   //top back arrow icon Button
-                  Positioned(
-                    top: 20.h,
-                    left: 20.h,
-                    child: ClipOval(
-                      child: Container(
-                        height: 25.h,
-                        width: 25.h,
-                        alignment: Alignment.centerRight,
-                        color: Colors.white,
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: kDarkGreen,
-                          size: 20.sp,
-                        ),
-                      ),
-                    ),
-                  ),
+                  CircularBackButton(onTapFuction: (){},),
 
                   //small leaves picture
-                  Positioned(
-                    top: height <690 ?220.h: 260.h,
-                    bottom: null,
-                    right: -6.h,
-                    child: RotationTransition(
-                      turns: const AlwaysStoppedAnimation(300 / 360),
-                      child: Image(
-                          width: 90.0.w,
-                          height: 90.0.h,
-                          image: const AssetImage('assets/images/leaf.png')),
-                    ),
-                  ),
+                  SmallLeavesPicture(positionFromTop: height <690 ?220.h: 260.h,),
 
                   //Welcome text + login to your account text
                   Positioned.fill(
@@ -170,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     //
                     SizedBox(
                      // height: 80.0.h,
-                      height: height <690 ?30.h: 80.h,
+                      height: height <690 ?30.h: 70.h,
                     ),
 
                     // Login Button
@@ -217,7 +190,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
 
 
 
