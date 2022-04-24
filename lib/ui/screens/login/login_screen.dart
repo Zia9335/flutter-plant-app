@@ -155,6 +155,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
+                    const SizedBox(
+                      height: 100,
+                    ),
                     ElevatedButton(
                       onPressed: () {},
                       child: const Padding(
@@ -176,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20.0,
+                      height: 10.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -192,8 +195,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {},
                           child: Container(
                             decoration: const BoxDecoration(
-                              border:
-                                  Border(bottom: BorderSide(color: kDarkGreen)),
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: kDarkGreen, width: 1.5)),
                             ),
                             child: const Text(
                               'Sign Up',
