@@ -10,7 +10,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
+  //final _formKey = GlobalKey<FormState>();
   bool? value = false;
 
   @override
@@ -24,10 +24,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 clipBehavior: Clip.none,
                 children: [
                   ClipPath(
-                    child: const Image(
-                      height: 300,
+                    child: Image(
+                      height: 220.0.h,
                       fit: BoxFit.cover,
-                      image: AssetImage(
+                      image: const AssetImage(
                         'assets/images/green-plants-loginscreen.jpg',
                       ),
                     ),
@@ -36,62 +36,56 @@ class _LoginScreenState extends State<LoginScreen> {
                   Positioned(
                     top: 20.h,
                     left: 20.h,
-                    // bottom: 30,
                     child: ClipOval(
                       child: Container(
                         height: 25.h,
                         width: 25.h,
                         alignment: Alignment.centerRight,
                         color: Colors.white,
-                        child: const Icon(
+                        child: Icon(
                           Icons.arrow_back_ios,
                           color: kDarkGreen,
-                          size: 20,
+                          size: 20.sp,
                         ),
                       ),
                     ),
                   ),
 
                   Positioned(
-                    top: 282.h,
+                    top: 250.h,
                     bottom: null,
                     right: -6.h,
-                    child: const RotationTransition(
-                      turns: AlwaysStoppedAnimation(300 / 360),
+                    child: RotationTransition(
+                      turns: const AlwaysStoppedAnimation(300 / 360),
                       child: Image(
-                          width: 90.0,
-                          height: 90.0,
-                          image: AssetImage('assets/images/leaf.png')),
+                          width: 90.0.w,
+                          height: 90.0.h,
+                          image: const AssetImage('assets/images/leaf.png')),
                     ),
                   ),
                   //
                   Positioned.fill(
-                    top: 280.h,
+                    top: 260.h,
                     bottom: null,
-                    left: 0.h,
-                    right: 0.h,
                     child: Column(
                       children: [
-                        const Text(
+                        Text(
                           'Welcome back',
                           style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 30,
+                              fontSize: 30.0.sp,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(
-                          height: 5.0,
+                        SizedBox(
+                          height: 5.0.h,
                         ),
-                        const Text(
+                        Text(
                           'Login to your account',
                           style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 14,
+                              fontSize: 14.0.sp,
                               color: Colors.grey,
                               fontWeight: FontWeight.w300),
-                        ),
-                        SizedBox(
-                          height: 20.h,
                         ),
                       ],
                     ),
@@ -99,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 100, 20, 10),
+                padding: EdgeInsets.fromLTRB(20.0.w, 120.0.h, 20.0.w, 10.0.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -109,8 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       obscureText: false,
                       textInputType: TextInputType.name,
                     ),
-                    const SizedBox(
-                      height: 20.0,
+                    SizedBox(
+                      height: 15.0.h,
                     ),
                     const CustomTextField(
                       iconData: Icons.lock,
@@ -145,64 +139,65 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {},
-                          child: const Text(
+                          child: Text(
                             'Forgot Password?',
                             style: TextStyle(
                                 color: kDarkGreen,
-                                fontSize: 10,
+                                fontSize: 10.sp,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 100,
+                    SizedBox(
+                      height: 80.0.h,
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.symmetric(
-                          vertical: 10.0,
+                          vertical: 10.0.h,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Login',
+                          style: TextStyle(fontFamily: "Poppins"),
                         ),
                       ),
                       style: ButtonStyle(
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.0.h),
                           ),
                         ),
                         backgroundColor: MaterialStateProperty.all(kDarkGreen),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10.0,
+                    SizedBox(
+                      height: 10.0.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Don\'t have an account? ',
                           style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 15.sp,
                           ),
                         ),
                         GestureDetector(
                           onTap: () {},
                           child: Container(
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
-                                      color: kDarkGreen, width: 1.5)),
+                                      color: kDarkGreen, width: 1.5.w)),
                             ),
-                            child: const Text(
+                            child: Text(
                               'Sign Up',
                               style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 10.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -225,13 +220,13 @@ class _LoginScreenClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path();
-    path.lineTo(0, size.height - 50);
+    path.lineTo(0, size.height.h - 55.h);
 
     path.quadraticBezierTo(
       size.width / 3,
-      size.height,
+      size.height.h - 10.h,
       size.width,
-      size.height - 90,
+      size.height.h - 100.h,
     );
     path.lineTo(size.width, 0);
     path.close();
@@ -263,23 +258,22 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
         prefixIcon: Icon(iconData, color: kDarkGreen),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: kDarkGreen, width: 1.0),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kDarkGreen, width: 1.w),
         ),
         filled: true,
         fillColor: kTextFieldFilledColor,
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+        contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
         hintText: hintText,
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
             fontFamily: "Poppins",
-            fontSize: 14.0,
+            fontSize: 14.sp,
             color: kDarkGreen,
             fontWeight: FontWeight.w500),
         border: inputBorder ??
             OutlineInputBorder(
               borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10),
             ),
       ),
     );
