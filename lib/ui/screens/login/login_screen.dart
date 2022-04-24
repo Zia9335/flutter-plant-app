@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:w3/core/constants/colors_constants.dart';
 
 class LoninScreen extends StatelessWidget {
   LoninScreen({Key? key}) : super(key: key);
@@ -10,15 +12,34 @@ class LoninScreen extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Stack(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
             children: [
-              const Image(
+              ClipPath(
+                child: const Image(
+                  height: 300,
                   fit: BoxFit.cover,
-                  image:
-                      AssetImage('assets/images/green-plants-loginscreen.jpg')),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: const [],
+                  image: AssetImage(
+                    'assets/images/green-plants-loginscreen.jpg',
+                  ),
+                ),
+                clipper: _LoginScreenClipper(),
+              ),
+              Positioned(
+                top: 20.h,
+                left: 20.h,
+                // bottom: 30,
+                child: ClipOval(
+                  child: Container(
+                    height: 25.h,
+                    width: 25.h,
+                    alignment: Alignment.centerRight,
+                    color: Colors.white,
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: kDarkGreen,
+                      size: 20,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -27,4 +48,25 @@ class LoninScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class _LoginScreenClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0, size.height - 50);
+
+    path.quadraticBezierTo(
+      size.width / 3,
+      size.height,
+      size.width,
+      size.height - 90,
+    );
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
