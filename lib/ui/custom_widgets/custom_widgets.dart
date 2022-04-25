@@ -4,10 +4,6 @@ import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/buttons_style.dart';
 
-
-
-
-
 //This the Clipper of logIn screen top big image
 class LoginScreenClipper extends CustomClipper<Path> {
   @override
@@ -30,32 +26,43 @@ class LoginScreenClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
-
-
-
-
 //Custom Text Field
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {Key? key,
-        required this.iconData,
-        this.textInputType,
-        this.obscureText,
-        required this.hintText,
-        this.inputBorder})
+      required this.prefixIconData,
+      this.textInputType,
+      this.obscureText,
+      required this.hintText,
+      this.suffixIconData,
+      this.inputBorder})
       : super(key: key);
+
+  // variables
   final String hintText;
   final bool? obscureText;
   final TextInputType? textInputType;
   final InputBorder? inputBorder;
-  final IconData iconData;
+  final IconData prefixIconData;
+  final IconData? suffixIconData;
   @override
   Widget build(BuildContext context) {
     return TextField(
       keyboardType: textInputType ?? TextInputType.text,
       obscureText: obscureText ?? false,
+
+      //This is the text field style and decoration
       decoration: InputDecoration(
-        prefixIcon: Icon(iconData, color: kDarkGreen),
+        suffixIcon: Icon(
+          suffixIconData,
+          color: kDarkGreen,
+          size: 18.h,
+        ),
+        prefixIcon: Icon(
+          prefixIconData,
+          color: kDarkGreen,
+          size: 18.h,
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: kDarkGreen, width: 1.w),
         ),
@@ -74,55 +81,52 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-
-
-
-
-
 /* SignUp Screen Text "By signing you agree to our Team
 of use and privacy notice"
  */
 class RichTextAgreeWithTeamText extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     return RichText(
       textAlign: TextAlign.center,
-      text: TextSpan(
-
-          children: [
-            TextSpan(text: 'By signing you agree to our ',
-              style: kTextFieldHintsTextStyle.copyWith(fontWeight: FontWeight.bold, ),),
-            TextSpan(text: 'Team of use ',
-                style: kTextFieldHintsTextStyle.copyWith(color: kGrey,)),
-            TextSpan(text: '\nand ',
-              style: kTextFieldHintsTextStyle.copyWith(fontWeight: FontWeight.bold),),
-            TextSpan(text: 'privacy notice ',
-                style: kTextFieldHintsTextStyle.copyWith(color: kGrey,)),
-          ]
-      ),);
+      text: TextSpan(children: [
+        TextSpan(
+          text: 'By signing you agree to our ',
+          style: kTextFieldHintsTextStyle.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        TextSpan(
+            text: 'Team of use ',
+            style: kTextFieldHintsTextStyle.copyWith(
+              color: kGrey,
+            )),
+        TextSpan(
+          text: '\nand ',
+          style: kTextFieldHintsTextStyle.copyWith(fontWeight: FontWeight.bold),
+        ),
+        TextSpan(
+            text: 'privacy notice ',
+            style: kTextFieldHintsTextStyle.copyWith(
+              color: kGrey,
+            )),
+      ]),
+    );
   }
 }
 
-
-
-
 //Custom Elevated Button
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({
-    Key? key, required this.function, required this.buttonText
-  }) : super(key: key);
+  const CustomElevatedButton(
+      {Key? key, required this.function, required this.buttonText})
+      : super(key: key);
   final VoidCallback function;
   final String buttonText;
-
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: function,
-
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 10.0.h,
@@ -136,8 +140,6 @@ class CustomElevatedButton extends StatelessWidget {
     );
   }
 }
-
-
 
 // repeated Small Leaves Picture
 class SmallLeavesPicture extends StatelessWidget {
@@ -165,14 +167,10 @@ class SmallLeavesPicture extends StatelessWidget {
   }
 }
 
-
-
-
 // repeated CircularBackButton
 class CircularBackButton extends StatelessWidget {
-  const CircularBackButton({
-    Key? key, required this.onTapFuction
-  }) : super(key: key);
+  const CircularBackButton({Key? key, required this.onTapFuction})
+      : super(key: key);
 
   final VoidCallback onTapFuction;
 
@@ -201,3 +199,24 @@ class CircularBackButton extends StatelessWidget {
   }
 }
 
+// repeated Gesture Detector CircularAvatar
+class GestureCircularAvatar extends StatelessWidget {
+  const GestureCircularAvatar(
+      {Key? key, required this.function, this.child, this.imageUrl})
+      : super(key: key);
+
+  final VoidCallback function;
+  final Widget? child;
+  final imageUrl;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: function,
+      child: CircleAvatar(
+        backgroundImage: imageUrl == null ? null : AssetImage(imageUrl),
+        child: child,
+        radius: 20.r,
+      ),
+    );
+  }
+}
