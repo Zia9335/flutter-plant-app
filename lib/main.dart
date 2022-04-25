@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/screens/login/login_screen.dart';
 
 void main() {
