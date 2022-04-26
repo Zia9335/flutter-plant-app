@@ -1,4 +1,5 @@
-import 'dart:ffi';
+import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
+import 'package:w3/ui/screens/product_details/product_details.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,43 +45,52 @@ class _HomeScreenState extends State<HomeScreen> {
       plantPrice: 31.00,
       onTapFunction: () {},
     ),
-    PlantCard(
-      plantImageUrl: 'assets/images/plant1.png',
-      plantNameText: "Peace Lily",
-      plantTypeText: "Indoor",
-      plantPrice: 31.00,
-      onTapFunction: () {},
-    ),
-    PlantCard(
-      plantImageUrl: 'assets/images/plant1.png',
-      plantNameText: "Peace Lily",
-      plantTypeText: "Indoor",
-      plantPrice: 31.00,
-      onTapFunction: () {},
-    ),
+    // PlantCard(
+    //   plantImageUrl: 'assets/images/plant1.png',
+    //   plantNameText: "Peace Lily",
+    //   plantTypeText: "Indoor",
+    //   plantPrice: 31.00,
+    //   onTapFunction: () {},
+    // ),
+    // PlantCard(
+    //   plantImageUrl: 'assets/images/plant1.png',
+    //   plantNameText: "Peace Lily",
+    //   plantTypeText: "Indoor",
+    //   plantPrice: 31.00,
+    //   onTapFunction: () {},
+    // ),
   ];
   List<Widget> RecentViewedPlantsList = [
     RecentViewedPlantsCard(
-      onTapFunction: () {},
+      onTapFunction: () {
+        print("RecentViewedPlantsList");
+        MaterialPageRoute(builder: (context) {
+          return ProductDeatailsScreen();
+        });
+      },
       plantImageUrl: "assets/images/plant1.png",
       plantNameText: "Calathea",
       plantDiscribText: "Its spines don't grow",
       plantPrice: 0,
     ),
-    RecentViewedPlantsCard(
-      onTapFunction: () {},
-      plantImageUrl: "assets/images/plant1.png",
-      plantNameText: "Calathea",
-      plantDiscribText: "Its spines don't grow",
-      plantPrice: 0,
-    ),
-    RecentViewedPlantsCard(
-      onTapFunction: () {},
-      plantImageUrl: "assets/images/plant1.png",
-      plantNameText: "Calathea",
-      plantDiscribText: "Its spines don't grow",
-      plantPrice: 0,
-    ),
+    // RecentViewedPlantsCard(
+    //   onTapFunction: () {
+    //     MaterialPageRoute(builder: (context) {
+    //       return ProductDeatailsScreen();
+    //     });
+    //   },
+    //   plantImageUrl: "assets/images/plant1.png",
+    //   plantNameText: "Calathea",
+    //   plantDiscribText: "Its spines don't grow",
+    //   plantPrice: 0,
+    // ),
+    // RecentViewedPlantsCard(
+    //   onTapFunction: () {},
+    //   plantImageUrl: "assets/images/plant1.png",
+    //   plantNameText: "Calathea",
+    //   plantDiscribText: "Its spines don't grow",
+    //   plantPrice: 0,
+    // ),
   ];
 
   int currentIndex = 0;
