@@ -1,4 +1,5 @@
 import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
+import 'package:w3/ui/screens/cart/cart_screen.dart';
 import 'package:w3/ui/screens/product_details/product_details.dart';
 
 import 'package:flutter/material.dart';
@@ -43,54 +44,39 @@ class _HomeScreenState extends State<HomeScreen> {
       plantNameText: "Peace Lily",
       plantTypeText: "Indoor",
       plantPrice: 31.00,
-      onTapFunction: () {},
     ),
-    // PlantCard(
-    //   plantImageUrl: 'assets/images/plant1.png',
-    //   plantNameText: "Peace Lily",
-    //   plantTypeText: "Indoor",
-    //   plantPrice: 31.00,
-    //   onTapFunction: () {},
-    // ),
-    // PlantCard(
-    //   plantImageUrl: 'assets/images/plant1.png',
-    //   plantNameText: "Peace Lily",
-    //   plantTypeText: "Indoor",
-    //   plantPrice: 31.00,
-    //   onTapFunction: () {},
-    // ),
+    PlantCard(
+      plantImageUrl: 'assets/images/plant1.png',
+      plantNameText: "Peace Lily",
+      plantTypeText: "Indoor",
+      plantPrice: 31.00,
+    ),
+    PlantCard(
+      plantImageUrl: 'assets/images/plant1.png',
+      plantNameText: "Peace Lily",
+      plantTypeText: "Indoor",
+      plantPrice: 31.00,
+    ),
   ];
   List<Widget> RecentViewedPlantsList = [
     RecentViewedPlantsCard(
-      onTapFunction: () {
-        print("RecentViewedPlantsList");
-        MaterialPageRoute(builder: (context) {
-          return ProductDeatailsScreen();
-        });
-      },
       plantImageUrl: "assets/images/plant1.png",
       plantNameText: "Calathea",
       plantDiscribText: "Its spines don't grow",
       plantPrice: 0,
     ),
-    // RecentViewedPlantsCard(
-    //   onTapFunction: () {
-    //     MaterialPageRoute(builder: (context) {
-    //       return ProductDeatailsScreen();
-    //     });
-    //   },
-    //   plantImageUrl: "assets/images/plant1.png",
-    //   plantNameText: "Calathea",
-    //   plantDiscribText: "Its spines don't grow",
-    //   plantPrice: 0,
-    // ),
-    // RecentViewedPlantsCard(
-    //   onTapFunction: () {},
-    //   plantImageUrl: "assets/images/plant1.png",
-    //   plantNameText: "Calathea",
-    //   plantDiscribText: "Its spines don't grow",
-    //   plantPrice: 0,
-    // ),
+    RecentViewedPlantsCard(
+      plantImageUrl: "assets/images/plant1.png",
+      plantNameText: "Calathea",
+      plantDiscribText: "Its spines don't grow",
+      plantPrice: 0,
+    ),
+    RecentViewedPlantsCard(
+      plantImageUrl: "assets/images/plant1.png",
+      plantNameText: "Calathea",
+      plantDiscribText: "Its spines don't grow",
+      plantPrice: 0,
+    ),
   ];
 
   int currentIndex = 0;
@@ -121,7 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           // gestureDetector for cart icon
                           GestureCircularAvatar(
-                            function: () {},
+                            function: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => CartScreen())));
+                            },
                             backgroundColor: kDarkGreen,
                             child: const Icon(
                               Icons.shopping_cart_outlined,

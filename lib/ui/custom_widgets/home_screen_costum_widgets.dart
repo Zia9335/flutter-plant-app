@@ -11,13 +11,15 @@ class GestureCircularAvatar extends StatelessWidget {
       required this.function,
       this.child,
       this.imageUrl,
-      this.backgroundColor})
+      this.backgroundColor,
+      this.radius})
       : super(key: key);
 
   final VoidCallback function;
   final Widget? child;
   final imageUrl;
   final Color? backgroundColor;
+  final double? radius;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,7 +28,7 @@ class GestureCircularAvatar extends StatelessWidget {
         backgroundColor: backgroundColor,
         backgroundImage: imageUrl == null ? null : AssetImage(imageUrl),
         child: child,
-        radius: 15.r,
+        radius: radius ?? 15.r,
       ),
     );
   }
@@ -34,13 +36,13 @@ class GestureCircularAvatar extends StatelessWidget {
 
 // repeated Recent Viewed Plants Card home Screen
 class RecentViewedPlantsCard extends StatelessWidget {
-  const RecentViewedPlantsCard({
+  RecentViewedPlantsCard({
     Key? key,
     required this.plantImageUrl,
     required this.plantNameText,
     required this.plantDiscribText,
     required this.plantPrice,
-    required this.onTapFunction,
+    // required this.onTapFunction,
   }) : super(key: key);
 
   // plant image url
@@ -55,7 +57,7 @@ class RecentViewedPlantsCard extends StatelessWidget {
   // plant price
   final double plantPrice;
 
-  final VoidCallback onTapFunction;
+  //final VoidCallback onTapFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +144,13 @@ class RecentViewedPlantsCard extends StatelessWidget {
 
 // repeated Plants Large Card Home Screen
 class PlantCard extends StatelessWidget {
-  const PlantCard({
+  PlantCard({
     Key? key,
     required this.plantImageUrl,
     required this.plantNameText,
     required this.plantTypeText,
     required this.plantPrice,
-    required this.onTapFunction,
+    // required this.onTapFunction,
   }) : super(key: key);
 
   // plant image url
@@ -163,7 +165,7 @@ class PlantCard extends StatelessWidget {
   // plant price
   final double plantPrice;
 
-  final VoidCallback onTapFunction;
+  // final VoidCallback onTapFunction;
 
   @override
   Widget build(BuildContext context) {

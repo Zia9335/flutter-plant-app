@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
+import 'package:w3/ui/screens/cart/cart_screen.dart';
 import 'package:w3/ui/screens/home/home_screen.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
@@ -18,6 +19,9 @@ class _RootScreenState extends State<RootScreen> {
   int _selectedIndex = 0;
   List<Widget> pagesList = [
     HomeScreen(),
+    CartScreen(),
+    CartScreen(),
+    CartScreen(),
   ];
 
   //button navigation bar items ontab function
@@ -31,7 +35,7 @@ class _RootScreenState extends State<RootScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: pagesList[0],
+        body: pagesList[_selectedIndex],
 
         //bottom navigation bar
         bottomNavigationBar: Container(
