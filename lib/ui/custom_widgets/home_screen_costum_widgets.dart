@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:w3/core/constants/colors_constants.dart';
+import 'package:w3/core/constants/text_style.dart';
 import "package:w3/ui/screens/product_details/product_details.dart";
 
 // repeated Gesture Detector CircularAvatar home Screen
@@ -193,7 +194,7 @@ class PlantCard extends StatelessWidget {
               // bottom: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: kTextFieldFilledColor,
+                  color: kLightenDarkGreenColor,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 height: 160.h,
@@ -264,11 +265,7 @@ class PlantCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "\$$plantPrice",
-                              style: TextStyle(
-                                  color: kGreen,
-                                  fontSize: 8.sp,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.bold),
+                              style: plantPriceTextStyle,
                             ),
                           )),
                     ],

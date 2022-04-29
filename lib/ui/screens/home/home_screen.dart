@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         isScrollable: true,
                         indicator: BubbleTabIndicator(
                           indicatorHeight: 22.h,
-                          indicatorColor: kTextFieldFilledColor,
+                          indicatorColor: kLightenDarkGreenColor,
                           tabBarIndicatorSize: TabBarIndicatorSize.tab,
                         ),
                         tabs: listTab,

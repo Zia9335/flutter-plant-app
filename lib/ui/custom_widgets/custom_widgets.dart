@@ -68,7 +68,7 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide(color: kDarkGreen, width: 1.w),
         ),
         filled: true,
-        fillColor: kTextFieldFilledColor,
+        fillColor: kLightenDarkGreenColor,
         contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 20.w),
         hintText: hintText,
         hintStyle: kTextFieldHintsTextStyle,
@@ -119,10 +119,14 @@ class RichTextAgreeWithTeamText extends StatelessWidget {
 //Custom Elevated Button
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
-      {Key? key, required this.function, required this.buttonText})
+      {Key? key,
+      required this.function,
+      required this.buttonText,
+      this.borderRadiusGeometry})
       : super(key: key);
   final VoidCallback function;
   final String buttonText;
+  final BorderRadiusGeometry? borderRadiusGeometry;
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +141,14 @@ class CustomElevatedButton extends StatelessWidget {
           style: kLongInButtonTextStyle,
         ),
       ),
-      style: kLogInScreenElevatedButtonStyle,
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: borderRadiusGeometry ?? BorderRadius.circular(30.0.r),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(kDarkGreen),
+      ),
     );
   }
 }

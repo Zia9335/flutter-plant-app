@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
+import 'package:w3/ui/screens/cart/cart_screen.dart';
 
 //
 class ProductDeatailsScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: kTextFieldFilledColor,
+        backgroundColor: kLightenDarkGreenColor,
         body: Stack(children: [
           Positioned(
             top: 20.h,
@@ -188,7 +189,13 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureCircularAvatar(
-                                  function: () {},
+                                  function: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CartScreen(),
+                                        ));
+                                  },
                                   radius: 20.r,
                                   child: const Icon(
                                     Icons.shopping_cart,
