@@ -209,7 +209,7 @@ class PlantCard extends StatelessWidget {
                 //height: 150.h,
                 child: Image.asset(
                   plantImageUrl,
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),

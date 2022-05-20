@@ -60,7 +60,9 @@ class SignUpScreen extends StatelessWidget {
 
                     //Full name text Field
                     const CustomTextField(
-                        prefixIconData: Icons.person, hintText: 'Full Name'),
+                      prefixIconData: Icons.person,
+                      hintText: 'Full Name',
+                    ),
                     SizedBox(
                       height: 15.h,
                     ),
@@ -75,13 +77,16 @@ class SignUpScreen extends StatelessWidget {
 
                     //Password text field
                     const CustomTextField(
-                        prefixIconData: Icons.lock, hintText: 'Password'),
+                        obscureText: true,
+                        prefixIconData: Icons.lock,
+                        hintText: 'Password'),
                     SizedBox(
                       height: 15.h,
                     ),
 
                     //Confirm password text field
                     const CustomTextField(
+                        obscureText: true,
                         prefixIconData: Icons.lock,
                         hintText: 'Confirm Password'),
                     SizedBox(

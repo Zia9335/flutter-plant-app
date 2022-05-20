@@ -35,44 +35,53 @@ class _HomeScreenState extends State<HomeScreen> {
     Tab(
       text: 'Outdoor',
     ),
+    Tab(
+      text: 'small',
+    ),
   ];
 
   // plants Card List
   List<Widget> plantsCardList = [
     PlantCard(
-      plantImageUrl: 'assets/images/plant1.png',
+      plantImageUrl: 'assets/images/plant (1).png',
       plantNameText: "Peace Lily",
       plantTypeText: "Indoor",
       plantPrice: 31.00,
     ),
     PlantCard(
-      plantImageUrl: 'assets/images/plant1.png',
-      plantNameText: "Peace Lily",
+      plantImageUrl: 'assets/images/plant (2).png',
+      plantNameText: "Peace king",
+      plantTypeText: "Outdoor",
+      plantPrice: 31.00,
+    ),
+    PlantCard(
+      plantImageUrl: 'assets/images/plant (3).png',
+      plantNameText: "Peace super",
       plantTypeText: "Indoor",
       plantPrice: 31.00,
     ),
     PlantCard(
-      plantImageUrl: 'assets/images/plant1.png',
-      plantNameText: "Peace Lily",
-      plantTypeText: "Indoor",
+      plantImageUrl: 'assets/images/plant (4).png',
+      plantNameText: "Peace Lily 4",
+      plantTypeText: "Outdoor",
       plantPrice: 31.00,
     ),
   ];
   List<Widget> RecentViewedPlantsList = [
     RecentViewedPlantsCard(
-      plantImageUrl: "assets/images/plant1.png",
+      plantImageUrl: "assets/images/plant (2).png",
       plantNameText: "Calathea",
       plantDiscribText: "Its spines don't grow",
       plantPrice: 0,
     ),
     RecentViewedPlantsCard(
-      plantImageUrl: "assets/images/plant1.png",
+      plantImageUrl: "assets/images/plant (1).png",
       plantNameText: "Calathea",
       plantDiscribText: "Its spines don't grow",
       plantPrice: 0,
     ),
     RecentViewedPlantsCard(
-      plantImageUrl: "assets/images/plant1.png",
+      plantImageUrl: "assets/images/plant (3).png",
       plantNameText: "Calathea",
       plantDiscribText: "Its spines don't grow",
       plantPrice: 0,
@@ -159,44 +168,67 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-
-                //Plants Card List
                 SizedBox(
-                  height: 200.h,
-                  child: ListView.builder(
-                    itemCount: plantsCardList.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 20.w),
-                    // itemBuilder:
-                    itemBuilder: (BuildContext context, int index) {
-                      return plantsCardList[index];
-                    },
-                  ),
-                ),
+                  height: 400.h,
+                  child: TabBarView(
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //Plants Card List
+                          SizedBox(
+                            height: 200.h,
+                            child: ListView.builder(
+                              itemCount: plantsCardList.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              padding: EdgeInsets.only(left: 20.w),
+                              // itemBuilder:
+                              itemBuilder: (BuildContext context, int index) {
+                                return plantsCardList[index];
+                              },
+                            ),
+                          ),
 
-                // Text Recent Viewed
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: 20.0.w, top: 10.h, right: 20.w),
-                  child: Text(
-                    "Recent Viewed",
-                    style: TextStyle(
-                        color: kDarkGreen,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.sp),
-                  ),
-                ),
-                SizedBox(
-                  height: 100.h,
-                  child: ListView.builder(
-                    itemCount: RecentViewedPlantsList.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    // itemBuilder:
-                    itemBuilder: (BuildContext context, int index) {
-                      return RecentViewedPlantsList[index];
-                    },
+                          // Text Recent Viewed
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 20.0.w, top: 10.h, right: 20.w),
+                            child: Text(
+                              "Recent Viewed",
+                              style: TextStyle(
+                                  color: kDarkGreen,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12.sp),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 100.h,
+                            child: ListView.builder(
+                              itemCount: RecentViewedPlantsList.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              // itemBuilder:
+                              itemBuilder: (BuildContext context, int index) {
+                                return RecentViewedPlantsList[index];
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      Center(
+                        child: Text("Top"),
+                      ),
+                      Center(
+                        child: Text("Indoore"),
+                      ),
+                      Center(
+                        child: Text("Outdoor"),
+                      ),
+                      Center(
+                        child: Text("small"),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -207,19 +239,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-// const TabBarView(
-//   children: <Widget>[
-//     Center(
-//       child: Text("It's cloudy here"),
-//     ),
-//     Center(
-//       child: Text("It's rainy here"),
-//     ),
-//     Center(
-//       child: Text("It's sunny here"),
-//     ),
-//   ],
-// ),
-
-
