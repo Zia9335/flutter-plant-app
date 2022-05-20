@@ -145,7 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: 20.h),
 
                       //Search Text Field Find your plants in just a few clicks!
-                      const CustomTextField(
+                      CustomTextField(
+                        //onchange function
+                        function: (String value) {
+                          //validationService.changeEmail(value);
+                        },
                         prefixIconData: Icons.search,
                         hintText: 'Search Plant',
                         suffixIconData: Icons.mic,

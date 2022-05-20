@@ -10,7 +10,10 @@ import 'package:w3/ui/screens/cart/cart_screen.dart';
 
 //
 class ProductDeatailsScreen extends StatefulWidget {
-  const ProductDeatailsScreen({Key? key}) : super(key: key);
+  const ProductDeatailsScreen({Key? key, required this.plantImageUrl})
+      : super(key: key);
+
+  final String plantImageUrl;
 
   @override
   State<ProductDeatailsScreen> createState() => _ProductDeatailsScreenState();
@@ -64,7 +67,7 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
             child: Image(
               height: 450.h,
               width: 250.w,
-              image: AssetImage('assets/images/plant1.png'),
+              image: AssetImage(widget.plantImageUrl),
             ),
           ),
           SizedBox.expand(

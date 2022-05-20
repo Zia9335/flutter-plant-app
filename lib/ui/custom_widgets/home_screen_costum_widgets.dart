@@ -66,7 +66,9 @@ class RecentViewedPlantsCard extends StatelessWidget {
       onTap: () {
         print("recentViewedPlantsCard is clicked");
         Navigator.push(context, MaterialPageRoute(builder: ((context) {
-          return ProductDeatailsScreen();
+          return ProductDeatailsScreen(
+            plantImageUrl: plantImageUrl,
+          );
         })));
       },
       child: Padding(
@@ -177,7 +179,7 @@ class PlantCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: ((context) {
-              return ProductDeatailsScreen();
+              return ProductDeatailsScreen(plantImageUrl: plantImageUrl);
             }),
           ),
         );

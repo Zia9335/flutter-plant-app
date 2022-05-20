@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
+import 'package:w3/ui/screens/login/login-view-model.dart';
 
 import 'package:w3/ui/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +10,7 @@ import 'package:w3/ui/screens/product_details/product_details.dart';
 void main() {
   runApp(
     MultiProvider(providers: [
-      Provider(create: (context) => ProductDeatailsScreen()),
+      ChangeNotifierProvider(create: (context) => LoginValidation()),
     ], child: MyApp()),
   );
 }

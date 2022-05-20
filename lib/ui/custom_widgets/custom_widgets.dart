@@ -36,7 +36,9 @@ class CustomTextField extends StatelessWidget {
       this.obscureText,
       required this.hintText,
       this.suffixIconData,
-      this.inputBorder})
+      this.inputBorder,
+      this.errorText,
+      required this.function})
       : super(key: key);
 
   // variables
@@ -46,14 +48,20 @@ class CustomTextField extends StatelessWidget {
   final InputBorder? inputBorder;
   final IconData prefixIconData;
   final IconData? suffixIconData;
+
+  final errorText;
+  final Function(String)? function;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: function,
+
       keyboardType: textInputType ?? TextInputType.text,
       obscureText: obscureText ?? false,
 
       //This is the text field style and decoration
       decoration: InputDecoration(
+        errorText: errorText,
         suffixIcon: Icon(
           suffixIconData,
           color: kDarkGreen,

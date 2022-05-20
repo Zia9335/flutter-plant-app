@@ -59,7 +59,11 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     //Full name text Field
-                    const CustomTextField(
+                    CustomTextField(
+                      //onchange function
+                      function: (String value) {
+                        // validationService.changeEmail(value);
+                      },
                       prefixIconData: Icons.person,
                       hintText: 'Full Name',
                     ),
@@ -68,7 +72,11 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     //Email text field
-                    const CustomTextField(
+                    CustomTextField(
+                        //onchange function
+                        function: (String value) {
+                          //validationService.changeEmail(value);
+                        },
                         prefixIconData: Icons.email,
                         hintText: 'asd123@gmail.com'),
                     SizedBox(
@@ -76,7 +84,11 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     //Password text field
-                    const CustomTextField(
+                    CustomTextField(
+                        //onchange function
+                        function: (String value) {
+                          //  validationService.changeEmail(value);
+                        },
                         obscureText: true,
                         prefixIconData: Icons.lock,
                         hintText: 'Password'),
@@ -85,7 +97,11 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     //Confirm password text field
-                    const CustomTextField(
+                    CustomTextField(
+                        //onchange function
+                        function: (String value) {
+                          // validationService.changeEmail(value);
+                        },
                         obscureText: true,
                         prefixIconData: Icons.lock,
                         hintText: 'Confirm Password'),

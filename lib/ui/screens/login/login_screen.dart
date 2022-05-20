@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
-import 'package:w3/core/constants/buttons_style.dart';
+import 'package:w3/ui/screens/login/login-view-model.dart';
 import 'package:w3/ui/screens/root_screen.dart';
 import 'package:w3/ui/screens/signup/signup_screen.dart';
 
@@ -22,6 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    final validationService = Provider.of<LoginValidation>(context);
+    //
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -85,7 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     //full name text field
-                    const CustomTextField(
+                    CustomTextField(
+                      //onchange function
+                      function: (String value) {
+                        validationService.changeEmail(value);
+                      },
+                      errorText: validationService.email.error,
                       prefixIconData: Icons.person,
                       hintText: 'Full Name',
                       obscureText: false,
@@ -98,7 +107,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
 
                     //Password text field
-                    const CustomTextField(
+                    CustomTextField(
+                      //onchange function
+                      function: (String value) {
+                        validationService.changePassword(value);
+                      },
+                      errorText: validationService.password.error,
                       prefixIconData: Icons.lock,
                       hintText: '******',
                       obscureText: true,
@@ -153,12 +167,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Login Button
                     CustomElevatedButton(
                       function: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RootScreen(),
-                          ),
-                        );
+                        if (!validationService.isValid) {
+                          const SnackBar(content: Text("please enter data"));
+                          null;
+                        } else {
+                          validationService.submitData;
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RootScreen()));
+                        }
                       },
                       buttonText: 'Login',
                     ),
