@@ -168,7 +168,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomElevatedButton(
                       function: () {
                         if (!validationService.isValid) {
-                          const SnackBar(content: Text("please enter data"));
                           null;
                         } else {
                           validationService.submitData;

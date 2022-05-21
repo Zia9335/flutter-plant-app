@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
+import 'package:w3/ui/screens/signup/signup-view-model.dart';
+import 'package:provider/provider.dart';
+import 'package:w3/ui/screens/login/login-view-model.dart';
 
-// ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
@@ -13,6 +15,8 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
+    final signUpViewModelServices = Provider.of<SignUpValidation>(context);
+    // final logninValidationService = Provider.of<LoginValidation>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -62,10 +66,11 @@ class SignUpScreen extends StatelessWidget {
                     CustomTextField(
                       //onchange function
                       function: (String value) {
-                        // validationService.changeEmail(value);
+                        signUpViewModelServices.changeName(value);
                       },
                       prefixIconData: Icons.person,
                       hintText: 'Full Name',
+                      errorText: signUpViewModelServices.name.error,
                     ),
                     SizedBox(
                       height: 15.h,
@@ -73,38 +78,44 @@ class SignUpScreen extends StatelessWidget {
 
                     //Email text field
                     CustomTextField(
-                        //onchange function
-                        function: (String value) {
-                          //validationService.changeEmail(value);
-                        },
-                        prefixIconData: Icons.email,
-                        hintText: 'asd123@gmail.com'),
+                      //onchange function
+                      function: (String value) {
+                        signUpViewModelServices.changeEmail(value);
+                      },
+                      prefixIconData: Icons.email,
+                      hintText: 'asd123@gmail.com',
+                      errorText: signUpViewModelServices.email.error,
+                    ),
                     SizedBox(
                       height: 15.h,
                     ),
 
                     //Password text field
                     CustomTextField(
-                        //onchange function
-                        function: (String value) {
-                          //  validationService.changeEmail(value);
-                        },
-                        obscureText: true,
-                        prefixIconData: Icons.lock,
-                        hintText: 'Password'),
+                      //onchange function
+                      function: (String value) {
+                        signUpViewModelServices.changePassword(value);
+                      },
+                      obscureText: true,
+                      prefixIconData: Icons.lock,
+                      hintText: 'Password',
+                      errorText: signUpViewModelServices.password.error,
+                    ),
                     SizedBox(
                       height: 15.h,
                     ),
 
                     //Confirm password text field
                     CustomTextField(
-                        //onchange function
-                        function: (String value) {
-                          // validationService.changeEmail(value);
-                        },
-                        obscureText: true,
-                        prefixIconData: Icons.lock,
-                        hintText: 'Confirm Password'),
+                      //onchange function
+                      function: (String value) {
+                        signUpViewModelServices.changeConfirmPassword(value);
+                      },
+                      obscureText: true,
+                      prefixIconData: Icons.lock,
+                      hintText: 'Confirm Password',
+                      errorText: signUpViewModelServices.confirmPassword.error,
+                    ),
                     SizedBox(
                       height: 15.h,
                     ),
