@@ -3,12 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/screens/cart/cart_screen.dart';
 import 'package:w3/ui/screens/home/home_screen.dart';
-import 'package:w3/ui/custom_widgets/custom_widgets.dart';
-import 'package:w3/core/constants/text_style.dart';
-import 'package:w3/core/constants/buttons_style.dart';
+
 import 'package:w3/ui/screens/menu/menu_Screen.dart';
 import 'package:w3/ui/screens/profile/profile_Screen.dart';
-import 'package:w3/ui/screens/signup/signup_screen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);

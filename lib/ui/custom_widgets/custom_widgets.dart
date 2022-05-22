@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/core/constants/colors_constants.dart';
-import 'package:w3/core/constants/buttons_style.dart';
-import 'package:w3/ui/screens/product_details/product_details.dart';
 
 //This the Clipper of logIn screen top big image
 class LoginScreenClipper extends CustomClipper<Path> {
