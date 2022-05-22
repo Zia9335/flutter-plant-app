@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
-import 'package:w3/ui/screens/login/login-view-model.dart';
+import 'package:w3/ui/screens/login/login_view_model.dart';
 import 'package:w3/ui/screens/root_screen.dart';
 import 'package:w3/ui/screens/signup/signup_screen.dart';
 
@@ -18,16 +18,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //final _formKey = GlobalKey<FormState>();
   bool? value = false;
-  double height = 0;
-  double width = 0;
 
   @override
   Widget build(BuildContext context) {
     //
     final validationService = Provider.of<LoginValidation>(context);
     //
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,12 +52,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   //small leaves picture
                   SmallLeavesPicture(
-                    positionFromTop: height < 690 ? 220.h : 260.h,
+                    positionFromTop: 260.h,
                   ),
 
                   //Welcome text + login to your account text
                   Positioned.fill(
-                    top: height < 690 ? 220.h : 260.h,
+                    top: 260.h,
                     bottom: null,
                     child: Column(
                       children: [
@@ -83,8 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               //text fields, forgot password, LogIn Button, SignUp Detector
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                    20.0.w, height < 690 ? 80 : 120.0.h, 20.0.w, 10.0.h),
+                padding: EdgeInsets.fromLTRB(20.0.w, 120.0.h, 20.0.w, 10.0.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -161,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     //
                     SizedBox(
                       // height: 80.0.h,
-                      height: height < 690 ? 30.h : 70.h,
+                      height: 70.h,
                     ),
 
                     // Login Button

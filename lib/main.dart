@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
-import 'package:w3/ui/screens/login/login-view-model.dart';
-
+import 'package:w3/ui/screens/home/home_view_model.dart';
+import 'package:w3/ui/screens/login/login_view_model.dart';
 import 'package:w3/ui/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:w3/ui/screens/product_details/product_details.dart';
 import 'package:w3/ui/screens/signup/signup-view-model.dart';
 
 void main() {
@@ -13,7 +11,7 @@ void main() {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => LoginValidation()),
       ChangeNotifierProvider(create: (context) => SignUpValidation()),
-      Provider<Testing>(create: (context) => Testing()),
+      ChangeNotifierProvider(create: (context) => HomeViewModel()),
     ], child: MyApp()),
   );
 }
@@ -40,15 +38,5 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class Testing extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
-    return Container();
   }
 }

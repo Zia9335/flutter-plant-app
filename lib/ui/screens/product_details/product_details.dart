@@ -1,25 +1,21 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:w3/ui/custom_widgets/product_details_custom_widgets.dart';
-import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
 import 'package:w3/ui/screens/cart/cart_screen.dart';
+import 'package:w3/ui/screens/home/home_view_model.dart';
+import '../../../core/models/plant_model.dart';
 
 //
-class ProductDeatailsScreen extends StatefulWidget {
-  const ProductDeatailsScreen({Key? key, required this.plantImageUrl})
+class ProductDeatailsScreen extends StatelessWidget {
+  const ProductDeatailsScreen({Key? key, required this.plant})
       : super(key: key);
 
-  final String plantImageUrl;
+  final Plant plant;
 
-  @override
-  State<ProductDeatailsScreen> createState() => _ProductDeatailsScreenState();
-}
-
-class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -36,7 +32,11 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
                 // gestureDetector for back
                 GestureCircularAvatar(
                   function: () {
+                    Provider.of<HomeViewModel>(context, listen: false)
+                        .addToRecentViewList(plant);
                     Navigator.pop(context);
+
+                    print("clicked");
                   },
                   backgroundColor: Colors.white,
                   child: Icon(
@@ -67,7 +67,7 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
             child: Image(
               height: 450.h,
               width: 250.w,
-              image: AssetImage(widget.plantImageUrl),
+              image: AssetImage(plant.imageUrl),
             ),
           ),
           SizedBox.expand(
@@ -96,13 +96,13 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Schefflera',
+                                        plant.name,
                                         style: kH1TextStyle.copyWith(
                                             fontSize: 20.sp),
                                       ),
                                       Row(
                                         children: [
-                                          Text("\$25.00",
+                                          Text("\$${plant.price}",
                                               style: kH2TextStyle.copyWith(
                                                   color: kGreen,
                                                   fontWeight: FontWeight.bold)),
@@ -171,7 +171,7 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
                                   style:
                                       kH1TextStyle.copyWith(fontSize: 14.sp)),
                               Text(
-                                "However, they look like huge white flowers and they bloom throughout the year and a bit more frequently in the springtime. This coupied with plant's brood, deep green leaves.",
+                                plant.description,
                                 style: TextStyle(
                                   fontSize: 10.sp,
                                   height: 1.5.h,
@@ -183,7 +183,9 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20.w),
-                          child: ProductDeatailsListView(),
+                          child: ProductDeatailsListView(
+                            plant: plant,
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -208,7 +210,7 @@ class _ProductDeatailsScreenState extends State<ProductDeatailsScreen> {
                               SizedBox(
                                 width: 10.w,
                               ),
-                              Expanded(
+                              const Expanded(
                                 child: BuyNowButton(),
                               ),
                             ],

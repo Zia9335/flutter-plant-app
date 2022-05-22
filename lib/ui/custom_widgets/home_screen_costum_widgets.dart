@@ -5,6 +5,8 @@ import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/text_style.dart';
 import "package:w3/ui/screens/product_details/product_details.dart";
 
+import '../../core/models/plant_model.dart';
+
 // repeated Gesture Detector CircularAvatar home Screen
 class GestureCircularAvatar extends StatelessWidget {
   const GestureCircularAvatar(
@@ -39,26 +41,9 @@ class GestureCircularAvatar extends StatelessWidget {
 class RecentViewedPlantsCard extends StatelessWidget {
   RecentViewedPlantsCard({
     Key? key,
-    required this.plantImageUrl,
-    required this.plantNameText,
-    required this.plantDiscribText,
-    required this.plantPrice,
-    // required this.onTapFunction,
+    required this.plant,
   }) : super(key: key);
-
-  // plant image url
-  final String plantImageUrl;
-
-  // plant name text
-  final String plantNameText;
-
-  // plant type text
-  final String plantDiscribText;
-
-  // plant price
-  final double plantPrice;
-
-  //final VoidCallback onTapFunction;
+  Plant plant;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +52,7 @@ class RecentViewedPlantsCard extends StatelessWidget {
         print("recentViewedPlantsCard is clicked");
         Navigator.push(context, MaterialPageRoute(builder: ((context) {
           return ProductDeatailsScreen(
-            plantImageUrl: plantImageUrl,
+            plant: plant,
           );
         })));
       },
@@ -85,7 +70,7 @@ class RecentViewedPlantsCard extends StatelessWidget {
                 height: 60.h,
                 child: Center(
                   child: Image.asset(
-                    plantImageUrl,
+                    plant.imageUrl,
                     fit: BoxFit.contain,
                     height: 50.h,
                     width: 50.w,
@@ -103,7 +88,7 @@ class RecentViewedPlantsCard extends StatelessWidget {
                 children: [
                   // plant name
                   Text(
-                    plantNameText,
+                    plant.name,
                     style: TextStyle(
                       color: kDarkGreen,
                       fontFamily: "Poppins",
@@ -115,7 +100,7 @@ class RecentViewedPlantsCard extends StatelessWidget {
 
                   // plant discription
                   Text(
-                    plantDiscribText,
+                    plant.slogans,
                     style: TextStyle(
                       color: Colors.grey,
                       fontFamily: "Poppins",
@@ -147,28 +132,8 @@ class RecentViewedPlantsCard extends StatelessWidget {
 
 // repeated Plants Large Card Home Screen
 class PlantCard extends StatelessWidget {
-  PlantCard({
-    Key? key,
-    required this.plantImageUrl,
-    required this.plantNameText,
-    required this.plantTypeText,
-    required this.plantPrice,
-    // required this.onTapFunction,
-  }) : super(key: key);
-
-  // plant image url
-  final String plantImageUrl;
-
-  // plant name text
-  final String plantNameText;
-
-  // plant type text
-  final String plantTypeText;
-
-  // plant price
-  final double plantPrice;
-
-  // final VoidCallback onTapFunction;
+  final Plant plant;
+  const PlantCard(this.plant, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +144,7 @@ class PlantCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: ((context) {
-              return ProductDeatailsScreen(plantImageUrl: plantImageUrl);
+              return ProductDeatailsScreen(plant: plant);
             }),
           ),
         );
@@ -210,7 +175,7 @@ class PlantCard extends StatelessWidget {
               child: SizedBox(
                 //height: 150.h,
                 child: Image.asset(
-                  plantImageUrl,
+                  plant.imageUrl,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -240,7 +205,7 @@ class PlantCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    plantTypeText,
+                    plant.type,
                     style: TextStyle(
                         color: kGreen,
                         fontFamily: "Poppins",
@@ -251,7 +216,7 @@ class PlantCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        plantNameText,
+                        plant.name,
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontSize: 12.sp,
@@ -266,7 +231,7 @@ class PlantCard extends StatelessWidget {
                               color: Colors.white),
                           child: Center(
                             child: Text(
-                              "\$$plantPrice",
+                              "\$${plant.price}",
                               style: plantPriceTextStyle,
                             ),
                           )),

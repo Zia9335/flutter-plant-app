@@ -4,7 +4,7 @@ import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/ui/screens/signup/signup-view-model.dart';
 import 'package:provider/provider.dart';
-import 'package:w3/ui/screens/login/login-view-model.dart';
+import 'package:w3/ui/screens/login/login_view_model.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);

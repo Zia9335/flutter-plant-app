@@ -1,12 +1,12 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
+import '../../core/models/plant_model.dart';
 
 //
 class ProductDeatailsListView extends StatelessWidget {
-  //
+  ProductDeatailsListView({Key? key, required this.plant}) : super(key: key);
+  Plant plant;
 
   List<Widget> list = [
     const ProductDetailsCard(
@@ -34,8 +34,6 @@ class ProductDeatailsListView extends StatelessWidget {
       value: 8.2,
     ),
   ];
-
-  ProductDeatailsListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
