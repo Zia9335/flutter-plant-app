@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
+import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/cart/cart_screen.dart';
 import 'package:w3/ui/screens/home/home_view_model.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,38 +18,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 // toggle bar text list
-  List<String> labels = ["Apples", "Bananas", "Oranges"];
 
-  List<Tab> listTab = const [
-    Tab(
-      text: 'Recommended',
-    ),
-    Tab(
-      text: 'Top',
-    ),
-    Tab(
-      text: 'Indoore',
-    ),
-    Tab(
-      text: 'Outdoor',
-    ),
-    Tab(
-      text: 'small',
-    ),
-  ];
-
-  int currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<HomeViewModel>(context, listen: false).callData;
+    Provider.of<CartViewModel>(context, listen: false).callData;
+  }
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<HomeViewModel>(context, listen: false).callData;
     //
     return Consumer<HomeViewModel>(
       builder: (context, model, child) {
         return SafeArea(
           //
           child: DefaultTabController(
-            length: listTab.length,
+            length: model.tabsList.length,
             initialIndex: 0,
             child: Scaffold(
               body: SingleChildScrollView(
@@ -70,18 +57,35 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
 
                               // gestureDetector for cart icon
-                              GestureCircularAvatar(
-                                function: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) =>
-                                              CartScreen())));
-                                },
-                                backgroundColor: kDarkGreen,
-                                child: const Icon(
-                                  Icons.shopping_cart_outlined,
-                                  color: Colors.white,
+                              Badge(
+                                showBadge: Provider.of<CartViewModel>(
+                                          context,
+                                        ).itemCount <=
+                                        0
+                                    ? false
+                                    : true,
+                                badgeColor: Colors.blueAccent,
+                                animationType: BadgeAnimationType.fade,
+                                badgeContent: Text(
+                                  Provider.of<CartViewModel>(
+                                    context,
+                                  ).itemCount.toString(),
+                                  style: kH1TextStyle.copyWith(
+                                      color: Colors.white, fontSize: 12.sp),
+                                ),
+                                child: GestureCircularAvatar(
+                                  function: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                CartScreen())));
+                                  },
+                                  backgroundColor: kDarkGreen,
+                                  child: const Icon(
+                                    Icons.shopping_cart_outlined,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
 
@@ -123,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               indicatorColor: kLightenDarkGreenColor,
                               tabBarIndicatorSize: TabBarIndicatorSize.tab,
                             ),
-                            tabs: listTab,
+                            tabs: model.tabsList,
                           ),
                         ],
                       ),
@@ -179,16 +183,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          Center(
+                          const Center(
                             child: Text("Top"),
                           ),
-                          Center(
+                          const Center(
                             child: Text("Indoore"),
                           ),
-                          Center(
+                          const Center(
                             child: Text("Outdoor"),
                           ),
-                          Center(
+                          const Center(
                             child: Text("small"),
                           ),
                         ],

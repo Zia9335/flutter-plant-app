@@ -13,15 +13,11 @@ class HomeViewModel extends ChangeNotifier {
   Future getPlants() async {
     plants = await _databaseServices.getPlants();
     notifyListeners();
-
-    return plants;
   }
 
   Future getRecentViewPlants() async {
     recentViewedPlant = await _databaseServices.getRecentViewPlants();
     notifyListeners();
-
-    return plants;
   }
 
   get callData {
@@ -30,8 +26,27 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   addToRecentViewList(Plant plant) {
-    _databaseServices.recentViewPlants.add(plant);
-
-    notifyListeners();
+    if (!recentViewedPlant.contains(plant)) {
+      _databaseServices.recentViewPlants.add(plant);
+      notifyListeners();
+    }
   }
+
+  List<Tab> tabsList = const [
+    Tab(
+      text: 'Recommended',
+    ),
+    Tab(
+      text: 'Top',
+    ),
+    Tab(
+      text: 'Indoore',
+    ),
+    Tab(
+      text: 'Outdoor',
+    ),
+    Tab(
+      text: 'small',
+    ),
+  ];
 }

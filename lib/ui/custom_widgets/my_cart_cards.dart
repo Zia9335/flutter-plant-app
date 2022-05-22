@@ -1,32 +1,22 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:w3/core/models/plant_model.dart';
 import 'package:w3/ui/custom_widgets/add_to_cart_and_remove_button.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/text_style.dart';
+import 'package:w3/ui/screens/cart/cart-view-model.dart';
 
 class MyCartCards extends StatelessWidget {
-  MyCartCards({
+  const MyCartCards({
     Key? key,
-    required this.plantImageUrl,
-    required this.plantNameText,
-    required this.plantDiscribText,
-    required this.plantPrice,
+    required this.plant,
+
     // required this.onTapFunction,
   }) : super(key: key);
 
-  // plant image url
-  final String plantImageUrl;
-
-  // plant name text
-  final String plantNameText;
-
-  // plant type text
-  final String plantDiscribText;
-
-  // plant price
-  final double? plantPrice;
-
-  //final VoidCallback onTapFunction;
+  final Plant plant;
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +33,32 @@ class MyCartCards extends StatelessWidget {
               // small plant image
               Expanded(
                 flex: 2,
-                child: Container(
-                  width: 80.w,
-                  height: 80.h,
-                  child: Center(
-                    child: Image.asset(
-                      plantImageUrl,
-                      fit: BoxFit.contain,
-                      height: 50.h,
-                      width: 50.w,
+                child: Badge(
+                  badgeColor: Colors.blueAccent,
+                  badgeContent: Text(
+                    Provider.of<CartViewModel>(context)
+                        .returnItemCount(plant)
+                        .toString(),
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      color: Colors.white,
                     ),
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.amber.shade100,
-                    borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 80.w,
+                    height: 80.h,
+                    child: Center(
+                      child: Image.asset(
+                        plant.imageUrl,
+                        fit: BoxFit.contain,
+                        height: 50.h,
+                        width: 50.w,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.shade100,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                   ),
                 ),
               ),
@@ -75,7 +77,7 @@ class MyCartCards extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          plantNameText,
+                          plant.name,
                           style: TextStyle(
                             color: kDarkGreen,
                             fontFamily: "Poppins",
@@ -97,7 +99,7 @@ class MyCartCards extends StatelessWidget {
 
                     // plant discription
                     Text(
-                      plantDiscribText,
+                      plant.slogans,
                       style: TextStyle(
                         color: Colors.grey,
                         fontFamily: "Poppins",
@@ -116,7 +118,11 @@ class MyCartCards extends StatelessWidget {
                           children: [
                             AddToCartAndRemoveButton(
                               iconData: Icons.remove,
-                              onTap: () {},
+                              onTap: () {
+                                Provider.of<CartViewModel>(context,
+                                        listen: false)
+                                    .decrementItemCount(plant);
+                              },
                             ),
 
                             Padding(
@@ -132,14 +138,18 @@ class MyCartCards extends StatelessWidget {
                             //add to cart
                             AddToCartAndRemoveButton(
                               iconData: Icons.add,
-                              onTap: () {},
+                              onTap: () {
+                                Provider.of<CartViewModel>(context,
+                                        listen: false)
+                                    .incrementItemCount(plant);
+                              },
                             ),
                           ],
                         ),
                         Padding(
                           padding: EdgeInsets.only(right: 10.w),
                           child: Text(
-                            "\$$plantPrice",
+                            "\$ ${plant.price * Provider.of<CartViewModel>(context).returnItemCount(plant)}",
                             style:
                                 plantPriceTextStyle.copyWith(fontSize: 13.sp),
                           ),

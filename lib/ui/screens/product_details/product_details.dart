@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/text_style.dart';
 import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
-import 'package:w3/ui/screens/cart/cart_screen.dart';
+import 'package:w3/ui/screens/cart/cart-view-model.dart';
+
 import 'package:w3/ui/screens/home/home_view_model.dart';
 import '../../../core/models/plant_model.dart';
 
@@ -133,28 +134,47 @@ class ProductDeatailsScreen extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: IconButton(
-                                                    onPressed: null,
-                                                    icon: Icon(
-                                                      Icons.remove,
-                                                      color: Colors.white,
-                                                      size: 12.h,
-                                                    )),
+                                                  onPressed: () {
+                                                    Provider.of<CartViewModel>(
+                                                            context,
+                                                            listen: false)
+                                                        .decrementItemCount(
+                                                            plant);
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.remove,
+                                                    color: Colors.white,
+                                                    size: 12.h,
+                                                  ),
+                                                ),
                                               ),
-                                              const Expanded(
-                                                  child: Center(
-                                                      child: Text(
-                                                '10',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ))),
+                                              Expanded(
+                                                child: Center(
+                                                  child: Text(
+                                                    Provider.of<CartViewModel>(
+                                                            context)
+                                                        .returnItemCount(plant)
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              ),
                                               Expanded(
                                                 child: IconButton(
-                                                    onPressed: null,
-                                                    icon: Icon(
-                                                      Icons.add,
-                                                      color: Colors.white,
-                                                      size: 12.h,
-                                                    )),
+                                                  onPressed: () {
+                                                    Provider.of<CartViewModel>(
+                                                            context,
+                                                            listen: false)
+                                                        .incrementItemCount(
+                                                            plant);
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.add,
+                                                    color: Colors.white,
+                                                    size: 12.h,
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -195,11 +215,9 @@ class ProductDeatailsScreen extends StatelessWidget {
                             children: [
                               GestureCircularAvatar(
                                   function: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => CartScreen(),
-                                        ));
+                                    Provider.of<CartViewModel>(context,
+                                            listen: false)
+                                        .addToCart(plant);
                                   },
                                   radius: 20.r,
                                   child: const Icon(
