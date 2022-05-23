@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 
+String kWelcomeback = "Welcome back";
 TextStyle kH1TextStyle = TextStyle(
     fontFamily: 'Poppins',
     color: kDarkGreen,

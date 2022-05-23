@@ -174,9 +174,12 @@ class PlantCard extends StatelessWidget {
               bottom: 50.h,
               child: SizedBox(
                 //height: 150.h,
-                child: Image.asset(
-                  plant.imageUrl,
-                  fit: BoxFit.fill,
+                child: Hero(
+                  tag: plant.imageUrl,
+                  child: Image.asset(
+                    plant.imageUrl,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),

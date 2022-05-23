@@ -1,12 +1,12 @@
 class Plant {
-  String name;
-  String type;
-  String imageUrl;
-  String description;
-  String slogans;
-  double humidity;
-  double height;
-  double price;
+  final String name;
+  final String type;
+  final String imageUrl;
+  final String description;
+  final String slogans;
+  final double humidity;
+  final double height;
+  final double price;
   int itemCount;
 
   Plant({

@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/home/home_view_model.dart';
-import 'package:w3/ui/screens/login/login_view_model.dart';
 import 'package:w3/ui/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:w3/ui/screens/signup/signup-view-model.dart';
 
 void main() {
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => LoginValidation()),
-      ChangeNotifierProvider(create: (context) => SignUpValidation()),
       ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ChangeNotifierProvider(create: (context) => CartViewModel()),
-    ], child: MyApp()),
+    ], child: const MyApp()),
   );
 }
 

@@ -65,10 +65,13 @@ class ProductDeatailsScreen extends StatelessWidget {
             top: 40.h,
             left: 30.w,
             right: 30.w,
-            child: Image(
-              height: 450.h,
-              width: 250.w,
-              image: AssetImage(plant.imageUrl),
+            child: Hero(
+              tag: plant.imageUrl,
+              child: Image(
+                height: 450.h,
+                width: 250.w,
+                image: AssetImage(plant.imageUrl),
+              ),
             ),
           ),
           SizedBox.expand(

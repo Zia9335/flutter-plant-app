@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           //Search Text Field Find your plants in just a few clicks!
                           CustomTextField(
                             //onchange function
-                            function: (String value) {
+                            onChanged: (String value) {
                               //validationService.changeEmail(value);
                             },
                             prefixIconData: Icons.search,

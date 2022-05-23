@@ -41,7 +41,98 @@ class DatabaseServices {
         height: 5.2,
         humidity: 50.0,
         imageUrl: 'assets/images/plant (3).png',
-        price: 33.5,
+        price: 13.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 4',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (4).png',
+        price: 19.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 5',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (5).png',
+        price: 17.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 6',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (6).png',
+        price: 11.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 7',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (7).png',
+        price: 61.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 8',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (8).png',
+        price: 32.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 9',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (9).png',
+        price: 12.5,
+        slogans: "ths clean and green",
+        description:
+            'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      ),
+    );
+    plants.add(
+      Plant(
+        name: 'Plant 10',
+        type: 'Indoor',
+        height: 5.2,
+        humidity: 50.0,
+        imageUrl: 'assets/images/plant (10).png',
+        price: 22.5,
         slogans: "ths clean and green",
         description:
             'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
