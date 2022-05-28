@@ -20,4 +20,31 @@ class Plant {
     required this.price,
     this.itemCount = 0,
   });
+  
+  Plant.fromJson(json){
+    
+    this.slogans = json['slogans'];
+    this.name = json['name'];
+    this.type = json['type'];
+    this.imgUrl = json['imgUrl'];
+    this.description = json['description'];
+    this.humidity = json['humidity'];
+    this.height = json['height'];
+    
+  }
+  
+  toJson(){
+    return {
+    'slogans': this.slogans,
+      'name': this.name,
+      'type': this.type,
+      .....
+        ......
+        ........
+    
+    }
+  }
+    
 }
+  
+  
