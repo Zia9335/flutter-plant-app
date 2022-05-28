@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool? value = false;
 
-  final obj = LoginViewModel();
+  final loginViewModelObject = LoginViewModel();
 
   final formKey = GlobalKey<FormState>();
 
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       //full name text field
                       CustomTextField(
-                        validation: obj.nameValidation,
+                        validation: loginViewModelObject.nameValidation,
                         onChanged: (String value) {},
                         prefixIconData: Icons.person,
                         hintText: 'Full Name',
@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       //Password text field
                       CustomTextField(
-                        validation: obj.passwordValidation,
+                        validation: loginViewModelObject.passwordValidation,
                         onChanged: (String value) {},
                         prefixIconData: Icons.lock,
                         hintText: '******',
