@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:w3/core/models/plant_model.dart';
 
 class DatabaseServices {
-  List<Plant> plants = [];
+  
   List<Plant> recentViewPlants = [];
   List<Plant> cartList = [];
 
   // getPlants()
   Future<List<Plant>> getPlants() async {
+    List<Plant> plants = [];
+    final snapshot = db.collection('plants').get();
+    forEach(final plantJson in snapshot.data){
+    plants.add(Plant.fromJson(plantJson));
+    }
     plants.add(
       Plant(
         name: 'Plant 1',
