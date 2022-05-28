@@ -13,15 +13,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final Object = SignUpViewModel();
   final formKey = GlobalKey<FormState>();
 
-  double height = 0;
-
-  double width = 0;
-
   @override
   Widget build(BuildContext context) {
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -36,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               //small leaves picture
               SmallLeavesPicture(
-                positionFromTop: height < 690 ? 20.h : 60.h,
+                positionFromTop: 60.h,
               ),
 
               Padding(
@@ -124,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       RichTextAgreeWithTeamText(),
 
                       SizedBox(
-                        height: height < 690 ? 50.h : 100.h,
+                        height: 100.h,
                       ),
 
                       //Sign Up Button

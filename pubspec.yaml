@@ -38,6 +38,8 @@ dependencies:
   bubble_tab_indicator: "^0.1.5"
   provider: ^6.0.2
   badges: ^2.0.2
+  firebase_core: ^1.17.0
+  firebase_auth: ^3.3.18
 
 dev_dependencies:
   flutter_test:
