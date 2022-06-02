@@ -36,8 +36,6 @@ class ProductDeatailsScreen extends StatelessWidget {
                     Provider.of<HomeViewModel>(context, listen: false)
                         .addToRecentViewList(plant);
                     Navigator.pop(context);
-
-                    print("clicked");
                   },
                   backgroundColor: Colors.white,
                   child: Icon(

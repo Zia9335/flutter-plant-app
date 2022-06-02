@@ -24,7 +24,7 @@ class CartViewModel extends ChangeNotifier {
   //
   int returnItemCount(Plant plant) {
     if (cartPlants.contains(plant)) {
-      return cartPlants[cartPlants.indexOf(plant)].itemCount;
+      return cartPlants[cartPlants.indexOf(plant)].itemCount.toInt();
     } else {
       return 0;
     }

@@ -53,7 +53,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validation,
-      onChanged: (onChanged) {},
+      onChanged: onChanged,
 
       keyboardType: textInputType ?? TextInputType.text,
       obscureText: obscureText ?? false,
@@ -126,18 +126,18 @@ class RichTextAgreeWithTeamText extends StatelessWidget {
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
       {Key? key,
-      required this.function,
+      required this.onPressed,
       required this.buttonText,
       this.borderRadiusGeometry})
       : super(key: key);
-  final VoidCallback function;
+  final VoidCallback onPressed;
   final String buttonText;
   final BorderRadiusGeometry? borderRadiusGeometry;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: function,
+      onPressed: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 10.0.h,

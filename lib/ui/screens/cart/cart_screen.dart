@@ -169,7 +169,7 @@ class CartScreen extends StatelessWidget {
                             ),
 
                             CustomElevatedButton(
-                              function: () {},
+                              onPressed: () {},
                               borderRadiusGeometry:
                                   BorderRadius.circular(10.0.r),
                               buttonText: "Place your order",

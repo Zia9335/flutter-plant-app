@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+import 'package:w3/core/services/database_services.dart';
 import 'package:w3/ui/custom_widgets/home_screen_costum_widgets.dart';
 import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/cart/cart_screen.dart';
@@ -52,7 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureCircularAvatar(
-                                function: () {},
+                                function: () {
+                                  // Provider.of<DatabaseServices>(context,
+                                  //         listen: false)
+                                  //     .sendDataToFirestore();
+                                  model.callData;
+                                },
                                 imageUrl: "assets/images/profile_picture.png",
                               ),
 
