@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:w3/core/models/plant_model.dart';
-import 'package:w3/core/services/database_services.dart';
-import 'package:provider/provider.dart';
 import 'package:w3/core/models/plant_model.dart';
 
 class DatabaseServices extends ChangeNotifier {
+  final _auth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   List<Plant> plantsDataSet = [
     Plant(
@@ -19,6 +18,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths plant",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 1,
     ),
     Plant(
       name: 'Plant 2',
@@ -31,6 +31,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths supper",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 2,
     ),
     Plant(
       name: 'Plant 3',
@@ -43,6 +44,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 3,
     ),
     Plant(
       name: 'Plant 4',
@@ -55,6 +57,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 4,
     ),
     Plant(
       name: 'Plant 5',
@@ -67,6 +70,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 5,
     ),
     Plant(
       name: 'Plant 6',
@@ -79,6 +83,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 6,
     ),
     Plant(
       name: 'Plant 7',
@@ -91,6 +96,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 7,
     ),
     Plant(
       name: 'Plant 8',
@@ -103,6 +109,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 8,
     ),
     Plant(
       name: 'Plant 9',
@@ -115,6 +122,7 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 9,
     ),
     Plant(
       name: 'Plant 10',
@@ -127,10 +135,10 @@ class DatabaseServices extends ChangeNotifier {
       slogans: "ths clean and green",
       description:
           'The Flutter team recommends that beginners to Flutter development use Provider for state management.',
+      plantId: 10,
     ),
   ];
   List<Plant> recentViewPlants = [];
-  List<Plant> cartList = [];
 
 // create function get data from firestore
   Future<List<Plant>> getPlantsDataList() async {
@@ -180,20 +188,8 @@ class DatabaseServices extends ChangeNotifier {
     }
   }
 
-  // Future sendDataToFirestore() async {
-  //   print("send data function is clicked");
-
-  //   await FirebaseFirestore.instance
-  //       .collection("plant")
-  //       .add(plantsDataSet[0].toJson());
-  // }
-
   Future<List<Plant>> getRecentViewPlants() async {
     return recentViewPlants;
-  }
-
-  Future<List<Plant>> getCartPlants() async {
-    return cartList;
   }
 
   //
@@ -214,4 +210,153 @@ class DatabaseServices extends ChangeNotifier {
       text: 'small',
     ),
   ];
+
+// cart database services
+
+  // push data to cart firestore
+
+  Future<void> addPlantToCart(Plant plant) async {
+    User? user = _auth.currentUser;
+    try {
+      if (user != null) {
+        firebaseFirestore
+            .collection('cart')
+            .doc(user.uid)
+            .collection('UserCart')
+            .doc(plant.plantId.toString())
+            .set(plant.toJson());
+        debugPrint('cart data has been sent successfully');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<List<Plant>> getCartPlantList() async {
+    List<Plant> cartPlantList = [];
+    User? user = _auth.currentUser;
+    try {
+      if (user != null) {
+        QuerySnapshot snapshot = await firebaseFirestore
+            .collection('cart')
+            .doc(user.uid)
+            .collection('UserCart')
+            .get();
+        if (snapshot.docs.isEmpty) {
+          debugPrint('No data');
+          return [];
+        } else {
+          debugPrint('get Cart data');
+          snapshot.docs.forEach((element) {
+            cartPlantList.add(Plant.fromJson(element.data()));
+          });
+          debugPrint('get Cart data length => ${cartPlantList.length} ');
+          // countCartItem = listCartPlant.length;
+        }
+      }
+      return cartPlantList;
+    } catch (e) {
+      debugPrint(e.toString());
+      return [];
+    }
+  }
+
+  // delete product from cart
+  void deleteCartProduct(Plant plant) {
+    User? user = _auth.currentUser;
+    try {
+      if (user != null) {
+        firebaseFirestore
+            .collection('cart')
+            .doc(user.uid)
+            .collection('UserCart')
+            .doc(plant.plantId.toString())
+            .delete();
+        debugPrint('cart data has been deleted successfully');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  //
+  Future updateCartQuantityIncrement(Plant plant) async {
+    User? user = _auth.currentUser;
+    try {
+      if (user != null) {
+        firebaseFirestore
+            .collection('cart')
+            .doc(user.uid)
+            .collection('UserCart')
+            .doc(plant.plantId.toString())
+            .update({"itemCount": FieldValue.increment(1)});
+
+        debugPrint('cart quatity incremented successfully');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  num? updateCartQuantityDecrement(Plant plant) {
+    num quantity = 0;
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        firebaseFirestore
+            .collection('cart')
+            .doc(user.uid)
+            .collection('UserCart')
+            .doc(plant.plantId.toString())
+            .update({"itemCount": FieldValue.increment(-1)}).then((value) {
+          firebaseFirestore
+              .collection('cart')
+              .doc(user.uid)
+              .collection('UserCart')
+              .doc(plant.plantId.toString())
+              .get()
+              .then((value) {
+            quantity = value.data()!['itemCount'];
+          });
+        });
+
+        debugPrint('cart quantity decrement successfully');
+
+        return quantity;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return 0;
+    }
+  }
+
+  //
+  num? itemQuantityReturn(Plant plant) {
+    num quantity = 0;
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        firebaseFirestore
+            .collection('cart')
+            .doc(user.uid)
+            .collection('UserCart')
+            .doc(plant.plantId.toString())
+            .get()
+            .then(
+          (DocumentSnapshot doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            quantity = data['price'];
+          },
+          onError: (e) => print("Error getting document: $e"),
+        );
+
+        debugPrint('cart item Quantity Return successfully');
+
+        return quantity;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return 0;
+    }
+  }
 }

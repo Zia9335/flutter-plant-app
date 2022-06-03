@@ -1,4 +1,6 @@
-class Plant {
+import 'package:w3/core/models/cart_model.dart';
+
+class Plant extends Cart {
   final String name;
   final String type;
   final String imageUrl;
@@ -8,6 +10,7 @@ class Plant {
   final num height;
   final num price;
   int itemCount;
+  final num plantId;
 
   Plant({
     required this.slogans,
@@ -19,6 +22,7 @@ class Plant {
     required this.height,
     required this.price,
     required this.itemCount,
+    required this.plantId,
   });
 
 // fromjson function
@@ -33,6 +37,7 @@ class Plant {
       height: json['height'] as num,
       price: json['price'] as num,
       itemCount: json['itemCount'] as int,
+      plantId: json['plantId'] as num,
     );
   }
 
@@ -48,6 +53,7 @@ class Plant {
     data['height'] = this.height;
     data['price'] = this.price;
     data['itemCount'] = this.itemCount;
+    data['plantId'] = this.plantId;
     return data;
   }
 

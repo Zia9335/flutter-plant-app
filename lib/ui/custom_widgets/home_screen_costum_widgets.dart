@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/core/constants/text_style.dart';
+import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import "package:w3/ui/screens/product_details/product_details.dart";
 
 import '../../core/models/plant_model.dart';
@@ -139,7 +141,8 @@ class PlantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("plantCard is clicked");
+        Provider.of<CartViewModel>(context, listen: false)
+            .quantityReturn(plant);
         Navigator.push(
           context,
           MaterialPageRoute(

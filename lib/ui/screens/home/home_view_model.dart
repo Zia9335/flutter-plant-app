@@ -29,7 +29,6 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   get callData async {
-    //  await databaseServices.sendDataToFirestore;
     getPlants();
     getRecentViewPlants();
   }

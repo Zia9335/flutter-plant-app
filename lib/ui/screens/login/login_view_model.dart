@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:w3/core/models/body/login_model.dart';
+import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/root_screen.dart';
 
 class LoginViewModel with ChangeNotifier {

@@ -12,21 +12,7 @@ import 'package:w3/core/constants/text_style.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:badges/badges.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-// toggle bar text list
-
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<HomeViewModel>(context, listen: false).callData;
-    Provider.of<CartViewModel>(context, listen: false).callData;
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
@@ -54,9 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               GestureCircularAvatar(
                                 function: () {
-                                  // Provider.of<DatabaseServices>(context,
-                                  //         listen: false)
-                                  //     .sendDataToFirestore();
                                   model.callData;
                                 },
                                 imageUrl: "assets/images/profile_picture.png",
@@ -81,6 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: GestureCircularAvatar(
                                   function: () {
+                                    Provider.of<CartViewModel>(context,
+                                            listen: false)
+                                        .callData;
+
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(

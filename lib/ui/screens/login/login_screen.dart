@@ -5,9 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
+import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/login/login_view_model.dart';
 import 'package:w3/ui/screens/root_screen.dart';
 import 'package:w3/ui/screens/signup/signup_screen.dart';
+
+import '../../../core/services/database_services.dart';
+import '../home/home_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,7 +21,19 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool? value = false;
 
+  //
+  void pushDataToFirestore() async {
+    await Provider.of<DatabaseServices>(context, listen: false)
+        .sendDataToFirestore();
+  }
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    //pushDataToFirestore();
+    Provider.of<HomeViewModel>(context, listen: false).callData;
+  }
 
   @override
   Widget build(BuildContext context) {

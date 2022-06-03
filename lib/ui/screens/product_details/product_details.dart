@@ -1,5 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:w3/core/services/database_services.dart';
 import 'package:w3/ui/custom_widgets/product_details_custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:w3/core/constants/colors_constants.dart';
@@ -139,7 +140,7 @@ class ProductDeatailsScreen extends StatelessWidget {
                                                     Provider.of<CartViewModel>(
                                                             context,
                                                             listen: false)
-                                                        .decrementItemCount(
+                                                        .quantityDecrement(
                                                             plant);
                                                   },
                                                   icon: Icon(
@@ -152,12 +153,11 @@ class ProductDeatailsScreen extends StatelessWidget {
                                               Expanded(
                                                 child: Center(
                                                   child: Text(
-                                                    Provider.of<CartViewModel>(
-                                                            context)
-                                                        .returnItemCount(plant)
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.white),
+                                                    plant.quantity.toString(),
+                                                    style:
+                                                        kH2TextStyle.copyWith(
+                                                            color:
+                                                                Colors.white),
                                                   ),
                                                 ),
                                               ),
@@ -167,7 +167,7 @@ class ProductDeatailsScreen extends StatelessWidget {
                                                     Provider.of<CartViewModel>(
                                                             context,
                                                             listen: false)
-                                                        .incrementItemCount(
+                                                        .quantityIncrement(
                                                             plant);
                                                   },
                                                   icon: Icon(
@@ -218,7 +218,7 @@ class ProductDeatailsScreen extends StatelessWidget {
                                   function: () {
                                     Provider.of<CartViewModel>(context,
                                             listen: false)
-                                        .addToCart(plant);
+                                        .addPlantToCart(plant);
                                   },
                                   radius: 20.r,
                                   child: const Icon(
