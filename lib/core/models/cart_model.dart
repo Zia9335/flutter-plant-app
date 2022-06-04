@@ -1,7 +1,7 @@
 class Cart {
-  num? quantity = 0;
+  num quantity;
 
   Cart({
-    this.quantity,
+    this.quantity = 0,
   });
 }

@@ -162,7 +162,7 @@ class MyCartCards extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(right: 10.w),
                               child: Text(
-                                "\$ ${plant.price * Provider.of<CartViewModel>(context).returnItemCount(plant)}",
+                                "\$ ${plant.price * plant.quantity}",
                                 style: plantPriceTextStyle.copyWith(
                                     fontSize: 13.sp),
                               ),

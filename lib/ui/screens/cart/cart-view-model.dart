@@ -1,12 +1,14 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:w3/core/models/cart_model.dart';
+
 import 'package:w3/core/models/plant_model.dart';
+import 'package:w3/core/services/auth_service.dart';
 import 'package:w3/core/services/database_services.dart';
+
+import '../../../locator.dart';
 
 class CartViewModel extends ChangeNotifier {
   final _databaseServices = DatabaseServices();
+  final _authService = locator<AuthService>();
 
   List<Plant> cartPlants = [];
   int itemCount = 0;
@@ -18,64 +20,42 @@ class CartViewModel extends ChangeNotifier {
   }
 
   getCartPlants() async {
-    cartPlants = await _databaseServices.getCartPlantList();
+    cartPlants =
+        await _databaseServices.getCartPlantList(_authService.user!.uid);
     itemCount = cartPlants.length;
     notifyListeners();
   }
 
   addPlantToCart(Plant plant) async {
-    _databaseServices.addPlantToCart(plant);
+    _databaseServices.addPlantToCart(plant, _authService.user!.uid);
     itemCount++;
     notifyListeners();
   }
 
   deletePlantFromCart(Plant plant) async {
-    _databaseServices.deleteCartProduct(plant);
+    await _databaseServices.deleteCartProduct(plant, _authService.user!.uid);
     getCartPlants();
     notifyListeners();
   }
 
   //
   void quantityIncrement(Plant plant) async {
-    await _databaseServices.updateCartQuantityIncrement(plant);
-    quantityReturn(plant);
+    await _databaseServices.updateCartQuantityIncrement(
+        plant, _authService.user!.uid);
+    getItemQuantity(plant);
   }
 
   void quantityDecrement(Plant plant) async {
-    await _databaseServices.updateCartQuantityDecrement(plant);
-    quantityReturn(plant);
+    await _databaseServices.updateCartQuantityDecrement(
+        plant, _authService.user!.uid);
+    getItemQuantity(plant);
   }
 
-  quantityReturn(Plant plant) async {
-    plant.quantity = await _databaseServices.itemQuantityReturn(plant);
+  getItemQuantity(Plant plant) async {
+    plant.quantity =
+        await _databaseServices.getItemQuantity(plant, _authService.user!.uid);
     print("quantityReturn: ${plant.quantity}");
     notifyListeners();
-  }
-
-  int returnItemCount(Plant plant) {
-    // if (cartPlants.contains(plant)) {
-    //   return cartPlants[cartPlants.indexOf(plant)].itemCount.toInt();
-    // } else {
-    return 0;
-    // }
-  }
-
-//
-  incrementItemCount(Plant plant) {
-    // if (!cartPlants.contains(plant)) {
-    //   addToCart(plant);
-    // } else {
-    //   cartPlants[cartPlants.indexOf(plant)].itemCount++;
-    //   notifyListeners();
-    //  }
-  }
-
-  //
-  decrementItemCount(Plant plant) {
-    // if (cartPlants.contains(plant) && returnItemCount(plant) > 0) {
-    //  cartPlants[cartPlants.indexOf(plant)].itemCount--;
-    //  notifyListeners();
-    //  }
   }
 
   double subtotalDollers() {

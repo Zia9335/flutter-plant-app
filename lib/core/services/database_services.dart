@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:w3/core/models/plant_model.dart';
 
 class DatabaseServices extends ChangeNotifier {
-  final _auth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   List<Plant> plantsDataSet = [
     Plant(
@@ -262,7 +261,7 @@ class DatabaseServices extends ChangeNotifier {
   }
 
   // delete product from cart
-  void deleteCartProduct(Plant plant) {
+  Future deleteCartProduct(Plant plant) async {
     User? user = _auth.currentUser;
     try {
       if (user != null) {
@@ -331,31 +330,29 @@ class DatabaseServices extends ChangeNotifier {
   }
 
   //
-  num? itemQuantityReturn(Plant plant) {
+  Future<num> getItemQuantity(Plant plant, final uid) async {
     num quantity = 0;
+
     try {
-      User? user = _auth.currentUser;
-      if (user != null) {
-        firebaseFirestore
-            .collection('cart')
-            .doc(user.uid)
-            .collection('UserCart')
-            .doc(plant.plantId.toString())
-            .get()
-            .then(
-          (DocumentSnapshot doc) {
-            final data = doc.data() as Map<String, dynamic>;
-            quantity = data['price'];
-          },
-          onError: (e) => print("Error getting document: $e"),
-        );
-
-        debugPrint('cart item Quantity Return successfully');
-
-        return quantity;
+      DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+          await firebaseFirestore
+              .collection('cart')
+              .doc(user.uid)
+              .collection('UserCart')
+              .doc(plant.plantId.toString())
+              .get();
+      if (querySnapshot.exists) {
+        quantity = querySnapshot['itemCount'];
+      } else {
+        debugPrint('No data found');
+        return 0;
       }
-    } catch (e) {
-      debugPrint(e.toString());
+      debugPrint('successfully get item quantity');
+
+      return quantity;
+    } catch (c) {
+      print(c);
+      print('Error in data get');
       return 0;
     }
   }

@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:w3/core/constants/colors_constants.dart';
 import 'package:w3/ui/custom_widgets/custom_widgets.dart';
 import 'package:w3/core/constants/text_style.dart';
-import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/login/login_view_model.dart';
-import 'package:w3/ui/screens/root_screen.dart';
 import 'package:w3/ui/screens/signup/signup_screen.dart';
 
 import '../../../core/services/database_services.dart';
@@ -100,15 +98,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20.0.w, 120.0.h, 20.0.w, 10.0.h),
                   child: Consumer<LoginViewModel>(
-                    builder: (context, consumerObject, child) => Form(
+                    builder: (context, model, child) => Form(
                       key: formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           //full email text field
                           CustomTextField(
-                            validation: consumerObject.emailValidation,
-                            onChanged: consumerObject.setEmail,
+                            validation: model.emailValidation,
+                            onChanged: model.setEmail,
                             prefixIconData: Icons.person,
                             hintText: 'Email',
                             obscureText: false,
@@ -122,8 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           //Password text field
                           CustomTextField(
-                            validation: consumerObject.passwordValidation,
-                            onChanged: consumerObject.setPassword,
+                            validation: model.passwordValidation,
+                            onChanged: model.setPassword,
                             prefixIconData: Icons.lock,
                             hintText: '******',
                             obscureText: true,
@@ -179,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           CustomElevatedButton(
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
-                                consumerObject.callLoginfunction(context);
+                                model.login();
                               }
                             },
                             buttonText: 'Login',

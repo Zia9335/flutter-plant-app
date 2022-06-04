@@ -1,8 +1,8 @@
-class LoginModel {
+class LoginBody {
   String? email;
   String? password;
 
-  LoginModel({this.email, this.password});
+  LoginBody({this.email, this.password});
 
   toJson() => {
         'email': email,

@@ -142,7 +142,7 @@ class PlantCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Provider.of<CartViewModel>(context, listen: false)
-            .quantityReturn(plant);
+            .getItemQuantity(plant);
         Navigator.push(
           context,
           MaterialPageRoute(

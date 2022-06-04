@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:w3/core/services/database_services.dart';
+import 'package:w3/locator.dart';
 import 'package:w3/ui/screens/cart/cart-view-model.dart';
 import 'package:w3/ui/screens/home/home_view_model.dart';
 import 'package:w3/ui/screens/login/login_screen.dart';
@@ -10,6 +12,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => HomeViewModel()),
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_) {
-        return MaterialApp(
+        return GetMaterialApp(
           useInheritedMediaQuery: true,
           title: 'Zia-antonx-task-week-3',
           theme: ThemeData(
